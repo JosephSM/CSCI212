@@ -1,0 +1,38 @@
+CS212 Java - OOP
+
+
+Object oriented programming is about:
+	Encapsulation - Everything is inside of something else think "class"
+								- DEFINITION: a programming technique that binds data and code together. 
+								              it manipulates and keeps it safe from outside interference.
+
+	Polymorphism - even though things can be grouped together, parts of those things can be changed
+			         - DEFINITION: is the quality that allows one interface to access a  class of actions
+	
+	Inheritance - 
+	Garbage Collection - Don't need to worry about memory leaks
+
+
+Java docs at http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
+
+
+writing programs for JVM
+	java primitive datatypes
+		int
+		double
+		float
+		char - 16 bit (unicode)
+		byte - 8 bits
+
+	static - 
+
+	everything in java is in a class
+
+
+class HelloWorldClass{
+	public static double battingAverage;     // var
+	public static void main(string[] args){  // func
+		system.out.println("");
+	}
+}
+
