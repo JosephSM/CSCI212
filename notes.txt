@@ -57,11 +57,18 @@ myArray1 = new int[5]; // valid Java
 && vs & 
 
 
+reading in:
+byte a = System.in.read();
+char myKey = (char) a;
 
+importing modules
 
-
-
-
-
+import javax.swing.joptionpane; // to read-in with message
+class HelloWorld{
+	public static void main(){
+		String inputString = JOptionPane.showInputDialog("Please enter");
+		int myNumber = Integer.parseInt(inputString);
+	}
+}
 
 
