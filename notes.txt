@@ -36,3 +36,32 @@ class HelloWorldClass{
 	}
 }
 
+float num = 1.2; //this will not compile, decimals default to doubles
+float num = 1.2F;       will compile
+float num = (float)1.2; will compile
+
+if..elseif..else
+switch...case
+try-catch block
+try{
+
+}
+catch(exception){
+
+}
+
+arrays are objects so they need to be instatiated
+int[] array; // valid in C++ NOT JAVA!
+myArray1 = new int[5]; // valid Java
+
+&& vs & 
+
+
+
+
+
+
+
+
+
+
