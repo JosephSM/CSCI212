@@ -1,0 +1,22 @@
+
+public class GrandParentClass {
+	String head;
+	boolean isBald;
+	int height;
+	boolean isActive;
+	
+	public GrandParentClass(){
+		
+	}
+	public GrandParentClass(String a){
+		
+	}
+	public GrandParentClass(String a, int b){
+		
+	}
+	
+	
+	
+	
+	
+}

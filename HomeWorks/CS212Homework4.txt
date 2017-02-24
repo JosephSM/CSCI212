@@ -1,0 +1,29 @@
+
+Homework 4 Description
+This next simple assignment will allow you to practice I/O with Multi-Threading.
+
+Prerequisites for this Assignment: Completed Homework 3 properly. If you have errors in it, fix it or risk losing points again.
+
+What needs to be added:
+
+1) Create two methods in your Main class (The class that host your main method)
+
+    i) WriteDataToFile - This method should only contain Homework 3 codes that randomize all attributes for the Student object. No instantiation of Student objects are allowed in this method.  You need to use FileWriter or any other file writing class you have learned so far to randomly generate each student record and write it on a text file. (I allow freedom in how you should choose to write a student record in each line of your text file but you should write it in such a way that allows you to parse your student record correctly)
+
+    ii)ReadDataFromFile - This method should only contain Homework 3 codes that instantiate Student objects. This code MUST read from the text files that you have created from your first method. Ideally, you should code it in such a way that you can dynamically set the text filenames dynamically such as using command line arguments I spoke of during the lab, but I will accept hardcoding of the filenames. If you have done WriteDataToFile method correctly, you should not have any problems reading from the file. Use the scanner class to help you with this assignment. Remember that the Scanner class already have the built-in next() and nextDouble() method available so that you do not have to reinvent the wheel.
+
+You can decide what the signatures of these two methods should be. Please note that you will be judged based on your knowledge in object-oriented programming. I will allow minor mistakes but not serious coding errors that shows lack of knowledge.
+
+2) In your main, you MUST call WriteDataToFile method first, before calling ReadDataFromFile. They MUST be invoked separately and does not depend on each other. (E.g., Simulate two different departments doing different tasks)
+
+[Here comes the multi-threading part:]
+
+3) Using Multi-threading knowledge you learned in lecture and in labs, modify your codes again so that you will write data to at least 3 DIFFERENT files concurrently.
+
+4) Using Multi-threading knowledge you learned in lecture and in labs, modify your codes again so that you will read data from at least 3 DIFFERENT files concurrently. Calculate the average GPA in each file and display the results.
+
+5) You MUST use different multi-threading techniques for writing and reading. So, if you used the inheritance technique for multi-threaded writing, then you must use the interface technique for the multi-threaded reading and vice versa.
+
+IMPORTANT: Export your project as one file like previous homework, make sure that it compiles, comment out any code that does not work and submit before the deadline. Failure to obey any of these rules will result in a ZERO. There is NO Exception to this.
+
+

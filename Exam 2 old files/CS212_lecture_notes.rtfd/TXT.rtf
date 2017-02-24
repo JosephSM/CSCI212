@@ -1,0 +1,820 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red14\green14\blue14;\red9\green78\blue192;
+\red127\green1\blue85;\red0\green0\blue192;\red63\green127\blue95;\red42\green0\blue255;\red106\green62\blue62;
+}
+\margl1011\margr1011\margb1445\margt1011\vieww14000\viewh16000\viewkind1\viewscale132
+\deftab720
+\pard\pardeftab720\ri60
+
+\f0\b\fs30 \cf0 \cb2 Lecture 1 - Introduction to Java Part 1
+\b0\fs26 \cf3 \
+\pard\pardeftab720\sa260
+\cf3 We went over briefly on computer architecture and organization, starting from what happen when you compiles a C++ program till program execution. At the basic level, the computer consists of the CPU (Central Processing Unit or more commonly known as the processor).\
+This is what you will most likely have learned in your CSCI 111 class:\
+1) You write your C++ program in 
+\b 'source code'.
+\b0 \
+2) Compile your C++ source code into an 
+\b executable 
+\b0 file which is described to you as 
+\b machine code
+\b0 . (.exe in windows and .out in linux)\
+3) You either double-click on\'a0the file\'a0or use the command-line prompt (or bash commands) to 
+\b run the executable file
+\b0 .\
+Why can't we run/execute the C++\'a0program we wrote directly?\
+Answer: Computer only understands binary and does not understand human language or even a programming language like C++. So, we need to perform a process in which we translate the programming language into a language that the\'a0computer can\'a0understands. This process is done by the compiler. In Computer Science, this process is called 
+\b 'translation'
+\b0 . Generally, this means that we take the input language and convert it into the target language.\
+A C++ program actually gets compiled into assembly\'a0code. You may\'a0not\'a0be able to view this step unless you explicitly set the\'a0flag in the\'a0gcc compiler.\'a0The assembler will then take this code as input to produce the appropriate machine code/object code\'a0using the 'linker'. It will have to then go through the Operating System Layer, the Macro-architecture(Instruction Set Architecture) and the\'a0Micro-architecture level.\
+[What to take away from this:]\
+1) It is not a simple process when you try to compile any program.\
+2) A simple C++\'a0source code has to go through at minimum the compiler,\'a0assembler, linker,\'a0Operating System and the CPU/Processor layer in order to be executed successfully.\
+3) Even if you ignore the compiler, assembler, and linker part, there are different combinations of operating system and processors that we have to deal with for the same task.\'a0Each type of operating system and processor will require different machine codes for the same task.\
+4) As a result, the binary code generated from each environment will only work for that environment. (E.g., the binary from a Windows environment using Intel x86 processor will not work in a Windows environment using an ARM processor)\'a0\'a0\'a0\
+[Java Virtual Machine]\
+Virtual Machine is just a fancy term for an 'imaginary' machine with a specific CPU that we can all write programs to. Instead of having to worry about all different permutations of operating system and processors, we only write to this imaginary machine. As a result we now have an extra level of indirection calledthe 'bytecode'.\
+A Java source code (.java file) gets\'a0compiled into a bytecode. This bytecode is then 'interpreted' by JVM and executed. As mentioned in lecture, the problemdoesn't really go away. It's just that we no longer sees it. For the purpose of this class, you can assume that the problem magically disappears but be aware of the limitations. What this means is that this is no longer our problem but the Java developers at Oracle if something stops working.\
+In reality, the JVM is just a program and an interpreter. It takes as input the bytecode and executes the instruction directly. (This process is called interpretationin Computer Science)\
+The JVM is also your first introduction to Encapsulation/Abstraction Layers:\'a0one of the tenets of Object-Oriented Programming.\
+[What do we achieve by doing this?]\
+Put simply, the same bytecode can be used to run your program(interpreted) in any environment that the Java virtual machine is installed regardless of the Operating System and Processor Configuration. In other words, we achieved platform portability. [Professor Note: JVM is actually the entity that is responsible for executing the program instructions.]\
+[What is Java?]\
+Java is a descendant of C and C++. C++ can do what Java can do but not as easy and is more tedious and error-prone. Java was created to solve a lot of problems that C++ was creating as programs become bigger and more complex.\
+Java got popular due to the internet with the advent of applet and also its portability across many platforms.\'a0\
+Other languages similar to Java is C# from Microsoft and Objective C from Apple. Microsoft calls their Virtual Machine .NET Framework and their bytecodeIntermediate Language (IL). Microsoft considers such codes as Managed Codes. There is\'a0a managed version of C++ called C++ CLI that is developed by Microsoft if you want to explore further on your own. UnManaged or Native Codes are codes such as C, C++, VB6, Basic... etc.\
+[One small note about C++:] C++ does support object-oriented programming but it can be broken very easily because of the use of raw pointers and the ability to go to any part of the memory. As a result, it is not generally considered a good OOP language. [Food for thought for CS211 students: Since Java is actually using C++ as its baseline, how do they get around the problems?]\
+[Object-oriented Programming]\
+The three tenets of Java Programming is:\
+i) \'a0Encapsulation - the JVM is your first introduction to the abstraction layer. You can think of it as a 'black box'. [Meaning: we don't care how it works as long as it works.]\
+ii) Polymorphism - we will cover this later\
+iii) Inheritance - we will cover this later\
+One of the things I added during lecture is [Garbage Collection] which is a really powerful feature and solves a lot of the memory leak problems we have in C++. There are no pointers in Java but we have references which is similar to a 'smart pointer' in C++.\
+[Java Syntax]\
+As a result of all the powerful features and convenience afforded to us, there is a specific way we have to do things in Java.\
+class TestHelloWorldClass\{\
+\'a0\'a0\'a0\'a0 public static void main(String[] args)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 System.out.println("Hello world");\
+\'a0\'a0\'a0\'a0 \}\
+\}\
+[Comments:]\
+The first keyword that is foreign to you is 'class'. The smallest component Java supports is an object. Therefore, everything must be encapsulated inside the class.\
+The second foreign keyword should be 'public'. 'public' just means that it is accessible by everyone. Since main is an entry point to your application, therefore it must be marked by the public keyword.\
+The third foreign keyword should be 'static'. For now, you can think of 'static' as 'There can only be one of this in this class'.\
+System.out.println("message"); is like cout << "message" << endl; in C++.\
+
+\b void
+\b0  is the return value of the function called main. In\'a0Java, we don't have functions, but we have [methods].\
+String[] args is an array of strings. We will cover more about arrays later on. \'a0\
+\
+\pard\pardeftab720\ri60
+
+\b\fs30 \cf0 Lecture 2\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 We did a brief review on what has been covered so far and filled in any missing knowledge.\
+[A bit of\'a0review:]\
+The essence of the Java programming language is a technique called the object-oriented programming(OOP) methodology. The three tenets of OOP is Encapsulation, Polymorphism, Inheritance.\
+Now, in addition to all of this, both Java and C# supports garbage collection.\
+Java is not better than C++ in all respects. It depends on what you want to do. In most respects, Java is better than C++ in terms of productivity and error-proof designs. But C++ wins when it comes to speed and raw processing power. (C is the fastest but since C++ supports everything that C does, we will put it into C++ category)\
+The official definition of Encapsulation according to the textbook :-\'a0A programming technique that binds together code and the data it manipulates, and that keeps both safe from outside interference and misuse.\
+[Professor Note: You can think of it as creating an imaginary boundary to help with managing and simplifying programming tasks.]\
+Polymorphism - is the quality that allows one interface to access a general class of actions.\
+Inheritance - is the process by which one object acquire the properties of another object from another/different class\
+The Java Virtual Machine was your first prime example of what Encapsulation is all about. It is a 'black box' to us because we do not really knows how it worksas long as it does what it is supposed to do. Regardless of which environment it resides in (Operating System and Processor type combos), the same bytecode can be used and will always work as intended across all platforms. We cannot really change how JVM works (for the purpose of this class). All we can do is compile our java program and feed it the generated bytecode to get what we want.\
+It is easier to view an object just like how you view an object in real life. Every object has attributes and/or 'behaviors'. This is actually how object-oriented programming first begins. JVM is one such object. It has a behavior called interpret in which it will take as argument the bytecode and returns nothing. Instead, it will execute the instructions directly for you. Codewise, it will look something like this:\'a0\
+\'a0JVM.interpret(bytecode);\
+[Similarities in Java and C++]\
+Since Java is a direct descendant of C++, there are a lot of similarities in Java. We will first look at that to get you more comfortable in java programming.\
+1) int, double, float behaves the same way.\
+2) if ()\{\} else \{\} block\'a0remains the same.\
+3) while and for loops blocks\'a0remains the same.\
+4) You still terminate every statement with a semicolon.\
+5) You write functions the same way in java but now you have to\'a0 preceed it with the 'static' keyword if you want to use it just like a C++ functions. In Java, we call these 'methods'. This is not just a change in names but also a change in the way you think about it. For now, think of method as behaviors. If you recall, the smallest allowed component in Java is an object, so every method needs to be inside an object. An object's method can be think of as a 'behavior'.\'a0\
+In C++, functions can exist on its own but there is no such thing in Java. A method HAS to belong to an object.\
+[Note: Page 37 of the book has the list of keywords that Java uses. Most of the keywords should be very familiar to you if you have taken CS111.]\
+[Chapter 2 - Taking a look at different data types(Intro)]\
+Like C++, Java is\'a0a strongly typed language. In other words, it is very strict on what it will let you compile as instructions when it comes to arguments and return types. E.g., if you say your method will\'a0accept an integer, it HAS to be an integer data type or else it will result in a compile error.\
+Java's primitive types:\
+http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html\
+The only thing you will most likely get confused is that the size of one 'char' type\'a0is now two bytes in Java whereas it is 1 byte in C++. There is a new type called byte in java which is of size 1 byte. Since each 'char' type\'a0supports 16-bit UNICODE\'a0representation, it can hold a maximum value of 2^n - 1 = 2^16 - 1 = 65,535.\
+C++ uses the ASCII standard (American Standard Code for Information Exchange). They never anticipated that each character in the future will require more than 256 combinations to support all possible letters and punctuation (just like how they never\'a0thought that we will require more than 52 Megabytes of memory!!). As such, each character in C++ is only 8 bit in size.\
+The closest thing to char in C++ for Java is byte which is always 8 bit in size. However, this data type is not a character and is treated as an 8 bit number. It is up to the programmer to convert an array of byte data types to its proper data types. (E.g., if you are reading from a character from an input stream, you cannot be sure or assume that each character is always 1 byte or 2 byte in size. Therefore, to resolve ambiguities, it will be read as a byte array where each byte is 8 bit in size and the programmer will have to perform the neccesary conversion back to its correct data types.)\
+\pard\pardeftab720\ri60
+
+\b\fs30 \cf0 Lecture 3 - Data Types and Operators, Exceptions (Intro)\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 [Checkpoint]\
+Java's integer size is always 4 bytes regardless of whether it is in a 32-bit or 64-bit environment since we are now programming for the JVM. Unlike C++ in which an integer is 8 bytes in size in a 64 bit environment.\
+[Arrays in Java]\
+Even though integer is a primitive data type, an array of integers is NOT a primitive data type. Any array of either primitive data types or objects\'a0is an OBJECT in Java.\
+Valid declaration of arrays in Java:\
+int[] myArray1; or int myArray1[]; //Both is\'a0valid in Java and will compile unlike in C++\
+Since array is now an object, it can potentially point to\'a0NOTHING or 'null'\'a0in computer terms.\'a0\
+[Continuation on Chapter 2]\
+Why does Java uses Unicode for its character representation? Answer: Because Java was designed for worldwide use. It needs a character set that can represent the world's language.\
+Java does not support unsigned integers. C# does. Having said that,\'a0 Java has static\'a0methods that can compare unsigned integers....\
+[Variable scopes]\
+Concepts of Name-Hiding in Java: (page 56) [You will see this mentioned in the Java API several times, so you might as well get used to it]\
+Simple example:\
+int x = 1;\
+if(x > 0) \{\
+\'a0\'a0\'a0 int y = 10;\
+\}\
+System.out.println(y); // This will generate an error because it is out of scope!\
+The following code will compile for C++ but will not compile in Java.\
+int count = 0;\
+for(int i = 0; i < 10; i++)\{\
+\'a0\'a0\'a0\'a0 int count = 1;\
+\}\
+The following code will NOT compile in both C++ or Java;\
+for(int i = 0; i < 5; i++)\{\
+\'a0\'a0\'a0 int y = 10;\
+\}\
+y = 2;\
+This is because y only exists in the scope of that block of code.\
+[Variable Initialization Quirks]\
+You cannot initialize float data types like this: float f1 = 1.3; //This will result in compile errors but will be okay in C++\
+float f2 = 1.4F; or float f2 = (float) 1.4;\
+double d1 = 1.3; // Is okay in both Java and C++\
+Booleans are called boolean instead of bool.\
+characters are initialized using single quotation whereas strings are initialized using double quotations just like C++;\
+String escape characters such as '\\n' or '\\t'\'a0in Java behaves the same way like C++.\
+[Java Operators]\
+The following page contains operator precedence and everything you need to know about Java operators:\
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html\
+The book explains it in more detail and easier to understand compared to the page above but they both say the same thing.\
+[A few things that are different than C++]\
+Java always evaluate from the left. For e.g., the following expression:\
+int x = 1;\
+x = (++x * 10) + (--x * 100); //In C++ the result is compiler specific and unknown\
+In the example, since the Parenthesis and prefix operator is the same precedence, which is evaluated first?\
+In Java, ambiguity is broken since it always evaluates the left operand first. However, in C++ this behavior is unknown and is compiler specific. \
+Another pecularity, you can perform modulus in Java using floating point numbers. For e.g., double x = 10.0 % 3.0; // This will fail to compile in C++\
+[Casting and conversion]\
+This behavior is exactly the same in Java. You will lose data if you convert from a more precise number to a less precise number. For, e.g.;\
+double x = 11.1;\
+int y = (int) x;\
+[Chapter 3 (intro)]\
+If statements, Nested If, While, and For loops behaves exactly the same as C++.\
+If you forgot most of these stuffs from CS111, you should definitely read Chapter 3 or go to the page:\
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html\
+Note: Things to watch out for are infinite loops. There are times in which you WANT an infinite loop especially when we are are constructing a background thread that listens to certain events.\
+Also, switch statements support strings and characters in Java unlike C++, so that makes it easier to use.\
+[Basic Exception Handling]\
+Since exception handling is not a new concept nor is it an object oriented programming concept, I have decided to cover a very basic version of it. As mentioned in the homework submission policy, I do not condone programs that crashes or fails to compile. Java allows for a very easy and intuitive way to catch unexpected events compared to C++. Standard format:\
+try\{\
+\'a0\'a0\'a0 //Code blocks here\
+\}\uc0\u8232 \u8232 catch (Exception ex)\{\
+\'a0\'a0\'a0\'a0 System.out.println("Error message: " + ex.getMessage());\
+\'a0\'a0\'a0\'a0 //You either throw an error message or try to resolve the problem here by forcing users to reenter a valid number for example.\
+\}\
+As a programmer, you need to be able\'a0control your program at ALL times. That means there are times in which you need to anticipate certain events that may happen such as trying to open an invalid file to read or file that does not exist or your calculation may result in division by zero, and many other events. For now, this is what you should use to anticipate user supplying an invalid number to be parsed, or other invalid inputs.\
+[There are no easy equivalent to cin from C++ in Java.]\
+We will have to use JOptionPane to perform this step.\
+Two steps:\
+1) Append this statement before your class declaration:\
+import javax.swing.JOptionPane; //this is similar to #include line in C++\
+2) Call the static method that belongs to the JOptionPane object called showInputDialog(); //Refer to the Java API link and learn how to read it to find what youneed.\
+String inputString = JOptionPane.showInputDialog("Please enter a number: ");\
+3) the static method showInputDialog() returns a string object everytime. So you have to refer to the Java API library again to figure out which methodwill\'a0convert a string object to a primitive integer data type for you:\
+\uc0\u8232 \'a0\'a0int numberEntered = Integer.parseInt(inputString);\
+4) But what happens if user entered something that is not a number? You will see that your program will crash in this scenario. This is simply unacceptable.\'a0Surround the block of code using the try catch block you just learned to capture this exception and do something about it.\
+try\uc0\u8232 \'a0\'a0\{\u8232 \'a0\'a0\'a0\'a0\'a0\'a0 String inputString = JOptionPane.showInputDialog("Please enter a number: ");\u8232 \'a0\'a0\'a0\'a0\'a0\'a0 int numberEntered = Integer.parseInt(inputString);\u8232 \'a0\'a0\}\u8232 \'a0\'a0catch(Exception ex)\u8232 \'a0\'a0\{\u8232 \'a0\'a0\'a0\'a0\'a0\'a0 System.out.println("Something bad happened. Error message: " + ex.getMessage());\u8232 \'a0\'a0\'a0\'a0\'a0 \'a0//Do what you need to do to fix this problem.\u8232 \'a0\'a0\}\
+\
+\pard\pardeftab720\ri60
+
+\b\fs30 \cf0 Lecture 4\cf3 \
+
+\b0\fs26 \
+\pard\pardeftab720\sa260
+\cf3 By now, you should be comfortable with using Java to perform elementary operations since 80 to 90 percent of the syntax is very similar to C++. There are quirks here and there that does not quite make sense yet but you know that\'a0there are certain things you have to do them in order for the program to work.\
+[Recap on the Hello world program]\
+In truth, the few lines of code that you wrote to output a "Hello World" to the console screen is\'a0actually more than it meets the eye.\
+For e.g., in order to output something to the console screen, you need to call System.out.println("message"); But what exactly are we calling or using?\
+Answer: First, let's refer to Java API to see the real specification. (Use the JAVA API link under Course Materials). Look under the System class, and see if youcan find out what out.println() means? Look under Field Summary or click on the Field under Summary at the top left corner.\
+You will first see that 'out' is one of the 'fields' of the System class. 'out' is of type PrintStream. 'out' is also a 'static' variable. If you click on the 'out' variable, you should see the variable declaration for out:\
+public static final\'a0{\field{\*\fldinst{HYPERLINK "https://docs.oracle.com/javase/7/docs/api/java/io/PrintStream.html"}}{\fldrslt \cf4 PrintStream}} out\
+[Comments:] Ah, so things make 'some' sense now.\
+1) 'out' has the access modifier of 'public', that means it is accessible to EVERYONE\
+2) it is a 'static' variable, that means there can only be ONE out variable available in the System class. (which makes sense that the system should have only ONE output stream)\
+3) 'final' is a new keyword you have not encountered yet. Think of final is something that is NOT changeable once you have declared it. For e.g.,\'a0 global CONSTANTS like in C++. Or the value of pi is 3.14159,... etc\
+4) Finally, the type of object that variable 'out' belongs to is in the PrintStream class. Another way to think of it is that, 'out' is an object of type PrintStream.\
+Phew... that's actually a lot more complicated than we originally envisioned...\
+But wait a minute,.. how about the println() method? Where is it?\
+5) Click on the PrintStream declaration to now read about what this PrintStream class' attributes and behaviors\
+6) Go to Method Summary or click on the Method under Summary at the top left hand corner of the PrintStream class.\
+7) Now, look at the println static methods... (The first thing you should notice that there are a lot of OVERLOADED println methods with each of them acceptingdifferent arguments)\
+[If you are unfamilliar with what Overloading methods mean, you might want\'a0to revisit your CS111 notes on overloading functions. Essentially, it just means that you have a function with the same name having different arguments.]\
+8) Click on the println() method declaration that accepts string as an argument: What does it say?\
+public\'a0void\'a0println({\field{\*\fldinst{HYPERLINK "https://docs.oracle.com/javase/7/docs/api/java/lang/String.html"}}{\fldrslt \cf4 String}}\'a0x)\
+[Note that this time, there is NO static declaration in the method declaration.] For now, think of non-static methods belonging to each instance of an object.\
+In Summary, When we call System.out.println("Hello World") to print out Hello World to the console screen:\
+i) We are actually accessing a Class Variable that belongs to the System class called 'out'.\
+ii) 'out' is of type PrintStream. Synonymous\'a0explanation/description:\'a0 'out'\'a0an object of\'a0the PrintStream class.\'a0 'out' is an 'instance' of the PrintStream class.\
+iii)'out' has\'a0a\'a0method called println() that is overloaded to accept different types of parameters. This method belongs to all PrintStream object,\
+that belongs to this static variable\'a0called 'out' that resides in the System class.\
+Confused yet? So what have we observed?\
+Rule #1: If something is declared as static, it belongs to the class. Another name for it is Class Variable. (This is as close as you can get to a true global variable in Java)\
+Rule #2: If something is NOT declared as static, it belongs to an object. Another name for it is Instance Variable. (I prefer to call it an attribute to make the immersion in object-oriented programming paradigm\'a0more complete). That means, each object is expected to have this 'attribute'. 'Field' is another name for 'attribute'.\
+It is time to look at what really defines a class:\
+[Original Intent in C++]\
+In C++, and the original intention is to define a class and/or a struct\'a0as a new data type. The only real\'a0difference between a struct and a class in C++ is that a struct by default has all its data members set to public while in class, everything is set to private by default. That's it. In the early days, the way 'grouping' of related data is done is through creating new data types like a struct or class in Java.\
+So, a sample\'a0student record can be defined as follow:\
+struct Student\{\
+\'a0\'a0\'a0\'a0 string firstName;\
+\'a0\'a0\'a0\'a0 string lastName;\
+\'a0\'a0\'a0\'a0 int CUNYID;\
+\'a0\'a0\'a0\'a0double GPA;\'a0\
+\}\
+So, the original intent in C++ is to instead use FOUR different variables to represent one student record, we want to use ONE Variables instead. Inside each of these data type, we have different categorization of data to represent the names, the id and the grade. But for all intents of purposes, we want to work with an 'instance' of student type variable instead of four variables each time. Logistically, it is messy if you do not have a way to declare a new variable type to represent this new entity. We have learned from the lecture that it is very messy and hard to keep track of if you individually create a variable for each attribute of a student.\
+However, in Java, we are doing more than just creating a new data type. We want to create entities that relates to one another, shares the same attributes, interacts with other objects (behaviors).\'a0\
+[So, where do we go from here?]\
+In summary, class is just a 'blueprint' for what you are actually interested in. In the example above, Student does not really exists until you create or 'instantiate' a student object. We will talk about more of this in the next lecture.\
+\
+\pard\pardeftab720\ri60
+
+\b\fs30 \cf0 Lecture 5 - Classes, Objects, Statics and Non-Statics\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 [Simple Definition of an Object and a Class]\
+A class does not\'a0really exist. It serves as a 'blueprint' for the objects that it create. The process in which you create an object is called 'instantiation'.\'a0 Each object created from a class receives its own copy of attributes and behaviors.\
+For a more concrete e.g., all of us belong to a class Human. Human does not really exists. We exists. Each of us have our own name, our own fingerprint, dnacomposition, nose, mouth, eyes, etc.. (barring any disease)\
+When you 'instantiate' a Human 'object', it is essentially like giving birth to a person. And this person can be considered an 'object' that has all the attributes a Human class have(Nose, Mouth, Eyes, Hands, DNA Sequence.. etc). Human also has behaviors such as Speak(), Eat(), TakeStuff(), Sleep().\
+Think of attributes as 'Instance Variable' since it belongs to each object that gets 'instantiated'. What are examples of a Class Variable? The count of all persons has been born/'instantiated' to this world. So, this variable will have to be 'static' because 'count' is not an attribute of a person.\
+[General Form of a Class]\
+class <className>\{\
+\'a0\'a0\'a0 //declare object attributes/instance variables/data members\
+\'a0\'a0\'a0 type attribute1;\
+\'a0\'a0\'a0 type attribute2;\
+\'a0\'a0\'a0 //declare behaviors/methods\
+\'a0\'a0\'a0 type behavior1(parameters)\{\
+\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0 type behavior2(parameters)\{\
+\'a0\'a0\'a0 \}\
+\}\
+[Classes in Java]\
+The class is the essence of Java. It is the logical construct on which the Java Language is built because the class defines the nature of an object.\
+[Object Instantiation and Constructors]\
+Unlike C++, Java objects does not gets created unless you used the new keyword.\
+For e.g., Human bob; does not mean that a human called bob exists unlike in C++ where memories are automatically allocated.\
+In order for an object to exist, it has to be 'instantiated' with the new keyword.\
+E.g., Human bob = new Human();//In order for bob to exist, a new keyword need to be used in order to 'instantiate' bob.\
+A constructor is a special type of method in which no return type is specified and it has to be declared public or else it will be impossible to make the objectexist. (There are times in which you want to make the constructors private so that this object can never be instantiated manually.)\
+A constructor looks the same as a method but without a return type. It can also have overloaded arguments/parameters just like a normal method. E.g.:\
+class Human\{\
+//Static variables or Class Variable or variables that belongs to no one except the class\
+static int count = 0; // Standalone variable that is used to keep track the number of humans that exist in this world\
+//Non-static Variables or variables that belong to each individual object that 'exist'/gets instantiated\
+private string name; //Human Attribute\
+public Human()\{ //Default constructor with no arguments. This is automatically created for you if you do not specify a constructor\
+\'a0\'a0\'a0\'a0\'a0this.name = "John Doe";\
+\'a0\'a0\'a0\'a0 count++;\
+\}\
+public Human(string name)\{ //overloaded constructor that accepts a string as argument\
+\'a0\'a0\'a0\'a0 this.name = name; //notice that this can get very hairy if you do not have the ability to distinguish between the parameter variable name and the actualattribute 'name' of a human object.\
+\'a0\'a0\'a0 count++;\
+\}\
+\}\
+Usage of constructors:\
+Human bob = new Human(); //instantiate a human object using default constructor\
+Human jane = new Human("Jane Doe");\
+Constructors can also be made private to prevent anyone from instantiating an object in a certain way. E.g. from above, if we want to prevent humans being born without a name, then we can make the first constructor private:\
+private Human ()\{\
+\'a0\'a0\'a0 name = "John Doe";\
+\} //You will get a compile error if you try to instantiate a Human object from now on without any parameters. Eg.:\
+Human bob = new Human(); //Compile Error\
+Human jane = new Human("Jane Doe"); // OK since the overloaded constructor is not made private\
+[this keyword]\
+'this'\'a0keyword\'a0refers to the current instance of an object. And thus, 'this' can never be used in the context of a 'static' method.\
+NOTE: Anything that is flagged as 'static' means that nobody owns it. It stands on its own in the class. Alternatively, you can say that the class owns it but I feel that this might confuse everyone.\
+Conversely, anything that is NOT flagged as static means that it is owned by the individual object. Or you can say that this is\'a0each object's attributes and/or behaviors().\
+[finalize method]\
+There are certain times in which you would like to perform cleanup just before the object is being destroyed in order to maintain the application state. Even though, we have garbage collection, there are still times in which we want to make sure that things are okay and perform some maintenance work\'a0before we retire an object to the dump. (release of resources)\
+We can do all of these in the finalize method.\
+\pard\pardeftab720\ri60
+
+\b\fs30 \cf0 Lecture 6 - More Data Types & Operators\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 [Multidimensional and Jagged Arrays]\
+\pard\pardeftab720\sa260
+\cf0 int[][] \cf3 multiArray\cf0 \'a0= new int[5][7]; //5 rows and 7 columns\cf3 \
+The left most column needs to have a length in it during instantiation of a multidimensional array.\
+Irregular/Jagged Arrays - different rows have different column size.\'a0\
+\cf0 int[][] \cf3 multiArray\cf0 2\'a0= new int[5][]; //5 rows but unknown columns\cf3 \
+multiArray2[0] = new int[7]; //this row has 7 columns\
+multiArray2[1] = new int[2]; //this row has 2 columns\
+multiArray2[2] = new int[3];\'a0//this row has 3 columns\
+[For-each style loops] - Another syntax borrowed from C++11.\
+int[] numbers = \{1,2,3,4,5\};\
+int sum = 0;\
+for(int num:numbers)\{ //Syntax in C#: foreach(int num in numbers)\
+\'a0 \'a0 sum += num;\
+\}\'a0\
+[String quirks]\
+First of all, strings are immutable - meaning that once it exist, it is not changeable. If you combine/concatenate two strings together, the original string object is destroyed and a new string is created in place.\
+E.g.: string myString\'a0= "Hello"; //myString\'a0is instantiated with the value of "Hello"\
+myString\'a0= myString\'a0+ " World"; //the original string object is destroyed and is replaced with a new string object with the value of "Hello world";\
+This is a very important concept. It is much more efficient to use a StringBuilder\'a0if you intent to perform a lot of string modifications.\'a0\
+Other string methods to play with: .length(), .charAt(). .compareTo(), .indexOf(), .lastIndexOf() //Look these up using the Java API\
+Second quirk:\
+String s1 = "Hello"; \
+String s2 = " World"; \
+String s3 = s1 + s2; \
+if(s1 == "Hello")\{ \
+\'a0 \'a0\'a0System.out.println("s1 is equal to Hello"); \
+\} \
+else\{ \
+\'a0 \'a0 System.out.println("s1 is not equal to Hello"); \
+\} \
+if(s3 == "Hello World")\{ \
+\'a0 \'a0 System.out.println("s3 is equal to Hello World"); \
+\} \
+else\{ \
+\'a0 \'a0 System.out.println("s3 is not equal to Hello World"); \
+\'a0 \'a0 System.out.println("s3 string value is:" + s3); \
+\}\
+the == operator for strings work very differently. It is checking for object references. So, the first if condition will be satisfied but the second if condition will NOT be satisfied and will result in the else block being executed.\
+The proper way to compare string is to use the .equals() method.\
+if(s1.equals("Hello"))\
+if(s3.equals("Hello World"))\
+Now, both if conditions will be satisfied. \'a0\
+[Bitwise operators]\
+Very similar to C++ again. For those that are not familiar, refer to:\'a0\
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html\
+\
+\pard\pardeftab720\sa200
+
+\fs20 \cf0 [Ternary Operators]\
+//This is a concept borrowed from C++, it is equivalent to a simple if statement.\
+int denominator = \'a0x == 0 ? 1 : x;\'a0\
+The code above is equivalent to:\
+int denominator;\
+if(x == 0)\{\
+\'a0 \'a0 denominator = 1;\
+\}\
+else\{\
+\'a0 \'a0 denominator = x;\
+\}\
+\pard\pardeftab720\ri60
+
+\b\fs30 \cf0 Lecture 7 - A closer look at Methods and Classes\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 [Encapsulation]\
+In order to implement proper encapsulation techniques, access modifiers are important. If you recall, it can also be used to prevent certain methods or constructors from being executed outside a class(by setting it to private). It can also be used to limit access to data members/attributes after an inheritance. 'protected' access level allows any descendant child class to access the data member. 'private' access level prohibits access to any class except its own. This list includes its own descendant child class. We'll talk more about inheritance later on.\'a0\'a0\
+[Java Access Modifiers Matrix]\
+The easiest way to remember this is to look up the access level matrix in the oracle website:\
+https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html\
+[Curly Braces Indentation]\
+A long time ago, line space is a premium when writing code. This is before the advent of great IDE tools that's available today to help increase programmer's productivity. As such, the standard way to overcome this is to write your block of code this way:\
+if(x%2 == 0)\{\
+\'a0\'a0\'a0\'a0 x++;\
+\'a0\'a0\'a0\'a0 System.out.println(x);\
+\}\
+else if(x%2 == 0 && x == 0)\{\
+\'a0\'a0\'a0 x--;\
+\'a0\'a0\'a0 System.out.println(x);\
+\}\
+I personally prefer writing code this\'a0way(illustrated below) due to my experience in debugging large chunks of code. //At least thousands of lines of code per page\
+if(x%2 == 0)\
+\{\
+\'a0\'a0\'a0 x++;\
+\'a0\'a0\'a0 System.out.println(x);\
+\}\
+else\
+\{\
+\'a0\'a0\'a0 if(x%2==0 && x==0) // This is a contrived example meant to illustrate the inner\'a0logic block involved. Typically, else if can exist on the same line.\
+\'a0\'a0\'a0 \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 x--;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 System.out.println(x);\
+\'a0\'a0\'a0\'a0\}\
+\}\
+This way, I get to see clearly where the blocks are. It is not a complicated code yet. Now, multiply this length by at least a thousand times and see how inconsistent indenting and curly braces will greatly hinder your work. As I mention earlier, 500 lines of code is not really considered a big program.\
+Moral of the Story:\'a0Java typically uses the first style, lower camelcase for everything except class names. It really does not matter which style you adopt as long as you are consistent in your code. You are most probably restricted by the company you worked for. This includes proper naming conventions for your variables\'a0because the code that you write will exist for many years to come(if it is any good) and may need to be changed at a later date. Your code will typically go through a 'Code Review' process depending on the Software Development Methodology used.\
+[Get and Set Accessor Methods]\
+Since you are now encapsulating the actual data members of your objects, your actual attributes are private and not visible to outsiders. In order to give them access to read or write the attributes, We need to provide the get and set methods for each\
+of the attribute you are allowing an outsider to change or read.\
+//For e.g., instead of letting a stranger take your wallet out of your pocket, you will instead let them get your name\'a0by invoking\'a0your own behavior calledSpeakName().\
+class Human\{\
+\'a0\'a0\'a0 private String name;\
+\'a0\'a0\'a0 //Get Methods\
+\'a0\'a0\'a0 public String SpeakName()\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return this.name;\
+\'a0\'a0\'a0 \}\
+\}\
+class MainClass\{\
+\'a0\'a0\'a0 public static void main(String[] args)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 Human jane = new Human("Jane Doe"); //outsider declaring a human object\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 System.out.println(jane.SpeakName()); //outsider trying to get jane's full name\
+\'a0\'a0\'a0 \}\
+\}\
+[Naming Convention - lower camelcase versus upper camelcase]\
+int MySuperVariable = 0; // Upper CamelCase\
+int mySuperVariable = 0; // Lower CamelCase\
+Note: Typically, Java programmers adopt lower camelcase for everything including method names.\
+However, C# programmers usually adopt lower camelcase for Variables but Upper CamelCase for Class Names and Methods to properly distinguish between anything that is encapsulated or an exposed attribute.\
+For e.g., if there is a public attribute belonging to an object that is not encapsulated for some reason, then it would exist as lower camelcase. That way, everyone knows that this is an exposed attribute.\
+class Circle\{ //Java way\
+\'a0\'a0\'a0 public double rad; //Note: you typically will hide this, this is just to illustrate naming conventions for attribute versus method\
+\'a0\'a0\'a0 public double radius()\{ //Get Method for\'a0Circle\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return radius;\
+\'a0\'a0\'a0 \}\
+\'a0\'a0\'a0 public Circle (double radius)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 this.rad = radius;\
+\'a0\'a0\'a0 \}\
+\}\
+class MainClass\{\
+\'a0\'a0\'a0 public static void main(String[] args)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 Circle myCircle1 = new Circle(5);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 Circle myCircle2 = new Circle(7);\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 System.out.println(myCircle1.radius());\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 System.out.println(myCircle1.rad);\
+\'a0\'a0\'a0 \}\
+\}\
+The code above illustrates how Java programmers name their variables and methods. Let me show you how and why C# programmers name their variablesand methods.\
+class MyCircle2 //These are valid C# codes. Notice the similarity between Java and C# syntax\
+\{\
+\'a0\'a0\'a0 public double rad;\
+\'a0\'a0\'a0\'a0public double Radius()\
+\'a0\'a0\'a0 \{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 return this.rad;\
+\'a0\'a0\'a0\'a0\}\
+\}\
+The only real difference I have in the code is that\'a0method names uses Upper CamelCase. This is typically used to stress/highlight the fact\'a0that it is Encapsulated and may behave differently in the future. (For e.g., its precision might change from 3 decimals to 4 decimals). It may seem pointless for such a short code but it is nevertheless a good handy trick to keep track of a complex program.\
+Moral of the story: People uses different naming conventions for different reasons. Again, you are most probably restricted by the company you work for in the future including what you can or cannot include in a method name or return value, etc. (This only applies to big companies in which you need to coordinatecodes with teams working all over the country or the world.)\
+[Static Variables and Methods]\
+When an object is created/instantiated, no copy of a static variable is made.\'a0\
+Think of static variables and methods as global variables and methods within a class scope.\
+[Static Blocks]\
+A static block is executed first BEFORE ANY other code within a class. This list includes a constructor. E.g.:\
+class myClass\{\
+\'a0 \'a0\'a0static int count = 0;\
+\'a0 \'a0 public myClass()\{ \'a0//default constructor\
+\'a0 \'a0 \'a0 \'a0 System.out.println("Constructor block is activated.");\
+\'a0 \'a0 \'a0 \'a0 count++;\
+\'a0 \'a0 \}\
+\'a0 \'a0 static\{ //static block\
+\'a0 \'a0 \'a0 \'a0System.out.println("Static block is executed:");\
+\'a0 \'a0 \'a0 \'a0count = 100;\
+\'a0 \'a0 \}\
+\'a0 \'a0public static void main(String[] args)\{\
+\'a0 \'a0 \'a0 \'a0 \'a0myClass\'a0newObject = new myClass();\
+\'a0 \'a0 \'a0 \'a0 \'a0myClass\'a0newObject2 = new myClass();\
+\'a0 \'a0 \'a0 \'a0 \'a0System.out.println("The value of count is:\'a0" + myClass.count);\
+\'a0 \'a0\}\
+\}\
+The code above will execute the static block first BEFORE the constructor gets called.\'a0\
+[Introducing Nested and Inner Class]\
+A class can be nested inside another class. This is done for a variety of reason. This is usually done if for some reason, you do not want the components of the internal class to be accessible outside the scope of the master class. (For example, maybe the inner class contains encryption logic or confidential material. It may be due to\'a0security reasons as well:\'a0The company or technical leader only wants certain software developers to have access to such objects.)\'a0\
+Implementation example:\
+class Outer\{\
+\'a0 \'a0static Inner myObject;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0 class Inner\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0int encryptioncode\'a0= 2;\
+\'a0 \'a0 \'a0 \'a0 public string decrypt(string code)\{\
+\'a0 \'a0 \'a0 \'a0 \}\
+\'a0 \'a0 \}\
+\}\
+Note: Typically, we do not use inner classes because it does not promote code-reusability\'a0since only one class has access to this.\
+[Varargs: Variable-length arguments]\
+This is a neat trick in certain situations that you need an to accept an unknown length of parameters:\
+class mySpecialClass\{\
+static void mySuperMethod(int ... unknown)\{ //this allows an unbounded number of integer parameters to this method\
+\'a0 \'a0 \'a0 for(int i = 0; i < unknown.length; i++)\{ //iterate through this just like an array\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 System.out.println(unknown[i]); //access this just like an array\
+\'a0 \'a0 \'a0 \}\
+\}\
+\'a0 \'a0 \'a0public static void main(String[] args)\{\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0mySuperMethod(1,2,3,4); //I can pass in any number of integers even though I did not specify 4 integers.\
+\'a0 \'a0 \'a0\}\
+\}\
+[Drawbacks of varags\'a0during overloading and\'a0ambiguity]\
+If you have two or more overloaded methods that will match your declaration, it will result into a compile error.\'a0\
+E.g.\
+static void method1(int x, int ... v)\{\
+\}\
+static void method1(int ...v)\{\
+\}\
+public static void main(String[] args)\{\
+\'a0 \'a0 method1(1); //Compile error! Both methods will satisfy the condition and thus ambiguous!\
+\}\
+\pard\pardeftab720\ri60
+
+\b\fs30 \cf0 Lecture 8 - Differences between Inheritance and Composite Class\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 Most students struggle to understand the difference between using a class and inheriting from or extending a class:\
+Composite classes are classes that uses objects from different classes whereas Inherited Classes owns everything the parent class has.\
+Composite Class Example:\
+class Date\{\
+\'a0\'a0\'a0 private int year;\
+\'a0\'a0\'a0 private int month;\
+\'a0\'a0\'a0 private int day;\
+\}\
+class Human\{\
+\'a0\'a0\'a0 private String firstName;\
+\'a0\'a0\'a0 private Date birthDate;\
+\}\
+//The example above is not an inheritance. You are effectively using objects from another class in order to represent an attribute of\'a0a human object. If you recall, integer is really not a good way to represent someone's age.\
+//There's a problem with the\'a0code above\'a0right now, what is it?\
+//Inheritance Example:\
+class Date\{\
+\'a0\'a0\'a0 protected int year;\
+\'a0\'a0\'a0 protected int month;\
+\'a0\'a0\'a0 protected int day;\
+\}\
+class DateTime extends Date\{\
+\'a0\'a0 private int hour;\
+\'a0\'a0 private int minutes;\
+\'a0\'a0 private int seconds;\
+\}\
+//Note as you can see, DateTime is related to Date class but has more attributes. You can look at\'a0inheritance as a way to\'a0specialize\'a0or extend a class.\
+\
+\pard\pardeftab720\ri60
+
+\b\fs30 \cf0 Lecture 9 - Abstract Classes, Interfaces and Custom Exceptions Handling\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 We continue on abstract classes since we did not have time to cover that in the last lecture.\'a0In a nutshell,\'a0abstract classes are classes that cannot be instantiated.\'a0\
+It is abstract because the designer specified it or if there is an incomplete method in the class itself.\'a0This incomplete method is also called an abstract method.\'a0That means, the class does not have enough information to implement this method at this point in time.\'a0The examples below illustrate how a Shapes object\'a0does not have enough information in order to calculate an area.\'a0\'a0\
+Codes used in lecture.\'a0(Start a new project. Make a separate class file for each of these classes in Eclipse.)\
+\pard\pardeftab720
+
+\f1\fs22 \cf5 abstract\cf0  \cf5 public\cf0  \cf5 class\cf0  Shapes \{\cf5 \
+\pard\pardeftab720
+\cf0  \cf5 private\cf0  \cf5 static\cf0  \cf5 int\cf0  \cf6 count\cf0  = 0; \cf7 //static attribute that is not shared with descendants\
+\cf0  \cf5 protected\cf0  \cf5 static\cf0  \cf5 double\cf0  \cf6 PI\cf0  = 3.14159; \cf7 // static attribute that is shared with descendants.\
+\cf0  \cf5 private\cf0  \cf5 int\cf0  \cf6 id\cf0 ; \cf7 //private attribute that is not shared with descendants\
+\cf0  \cf5 public\cf0  Shapes()\{ \cf7 //empty and default constructor\
+\pard\pardeftab720
+\cf3  \cf5 this\cf3 .\cf6 id\cf3  = ++\cf6 count\cf3 ;\
+\pard\pardeftab720
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Base constructor from Shapes class is called"\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+\pard\pardeftab720
+\cf0  \cf5 public\cf0  \cf5 int\cf0  getID()\{ \cf7 //complete method that is available to everyone\
+\cf0  \cf5 return\cf0  \cf5 this\cf0 .\cf6 id\cf0 ;\cf5 \
+\pard\pardeftab720
+\cf3  \}\
+\pard\pardeftab720
+\cf0  \cf5 abstract\cf0  \cf5 public\cf0  \cf5 double\cf0  GetArea();\cf7 //Incomplete method. Shapes class has no way of calculating area at this point in time\
+\pard\pardeftab720
+\cf3 \}\
+\pard\pardeftab720
+\cf5 abstract\cf0  \cf5 class\cf0  Polygon \cf5 extends\cf0  Shapes\{ \cf7 //Polygon inherits from Shapes but still has no way of implementing GetArea() method\'a0\
+\pard\pardeftab720
+\cf0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \cf7 //and is forced to be marked as abstract. Polygon Inherits Everything Else\
+\pard\pardeftab720
+\cf3  \cf5 public\cf3  Polygon()\{\
+\pard\pardeftab720
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Constructor from Polygon is called."\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+\}\
+\pard\pardeftab720
+\cf5 class\cf0  Rectangle \cf5 extends\cf0  Polygon\{ \cf7 //class that inherits from Polygon MUST implement GetArea() method or mark itself as an abstract class\
+\pard\pardeftab720
+\cf0  \cf5 private\cf0  \cf5 double\cf0  \cf6 width\cf0 ;\'a0 \cf7 //Additionally, Rectangle now have extra attributes that Polygon and Rectangle does not have\
+\cf0  \cf5 private\cf0  \cf5 double\cf0  \cf6 height\cf0 ;\'a0\cf5 \
+\cf0  \cf5 public\cf0  \cf5 double\cf0  GetArea()\{ \cf7 //complete implementation of GetArea method\
+\cf0  \cf5 return\cf0  \cf6 width\cf0 *\cf6 height\cf0 ;\cf6 \
+\pard\pardeftab720
+\cf3  \}\
+\pard\pardeftab720
+\cf0  \cf5 public\cf0  Rectangle(\cf5 double\cf0  \cf9 width\cf0 , \cf5 double\cf0  \cf9 height\cf0 )\{ \cf7 //Rectangle has only one constructor that accepts width and height as parameter\
+\pard\pardeftab720
+\cf3  \cf5 this\cf3 .\cf6 width\cf3  = \cf9 width\cf3 ;\
+ \cf5 this\cf3 .\cf6 height\cf3  = \cf9 height\cf3 ;\
+\pard\pardeftab720
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Constructor from Rectangle called"\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+\}\
+\pard\pardeftab720
+\cf5 class\cf0  Circle \cf5 extends\cf0  Shapes\{ \cf7 //Circle class is now a complete class and can be instantiated.\
+\pard\pardeftab720
+\cf0  \cf5 private\cf0  \cf5 double\cf0  \cf6 radius\cf0 ; \cf7 //Circle now has an extra attribute called radius\
+\cf0  \cf5 public\cf0  \cf5 double\cf0  GetArea()\{\'a0 \cf7 //Complete implementation of the base class' abstract method\'a0\
+\cf0  \cf5 return\cf0  \cf6 PI\cf0 *\cf6 radius\cf0 *\cf6 radius\cf0 ;\cf7 //Circle has access to protected data members from Shapes class since it is a descendant\
+\pard\pardeftab720
+\cf3  \}\
+\pard\pardeftab720
+\cf0  \cf5 public\cf0  Circle(\cf5 double\cf0  \cf9 radius\cf0 )\{ \cf7 //Circle only have one constructor that access a double as a parameter\
+\pard\pardeftab720
+\cf3  \cf5 this\cf3 .\cf6 radius\cf3  = \cf9 radius\cf3 ;\
+\pard\pardeftab720
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Constructor from Circle called"\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+\}\
+\
+\pard\pardeftab720
+\cf5 class\cf3  AbstractDemo\{\
+ \cf5 public\cf3  \cf5 static\cf3  \cf5 void\cf3  main(String[] \cf9 args\cf3 )\{\
+\pard\pardeftab720
+\cf0  \cf7 //Shapes myObject = new Shapes();//Compile error\
+\cf0  \cf7 //Polygon myObject2 = new Polygon(); // Compile error\
+\pard\pardeftab720
+\cf3  Circle \cf9 myCircle\cf3  = \cf5 new\cf3  Circle(12); \cf7 //OK,\cf3 \
+ Rectangle \cf9 myRectangle\cf3  = \cf5 new\cf3  Rectangle(10,20);\
+\pard\pardeftab720
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Circle's ID is: "\cf0  + \cf9 myCircle\cf0 .getID()); \cf7 //They both have access to getID method despite the fact that ID attribute is not available for them\
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Rectangle's ID is: "\cf0  + \cf9 myRectangle\cf0 .getID()); \cf7 //what's amazing is that you now have a way to keep track of unrelated classes together!!!\
+\pard\pardeftab720
+\cf3 \
+ \}\
+\}\
+[Custom Exceptions]\
+Now that you have learned Inheritance, it is time to update your knowledge a little bit. There are situations in which the numbers supplied is a valid number but it is not good for your institution or business. Take for example withdrawal amount.\'a0\
+Code used in lectures:
+\f0\fs26 (Start a new project. Make a separate class file for each of these classes in Eclipse.)
+\f1\fs22 \
+\
+\pard\pardeftab720
+\cf5 public\cf3  \cf5 class\cf3  MyOwnException \cf5 extends\cf3  Exception\{\
+ \cf5 public\cf3  MyOwnException()\{\
+\pard\pardeftab720
+\cf0  \cf5 super\cf0 (); \cf7 //This is redundant since it will be automatically called due to inheritance\
+\pard\pardeftab720
+\cf3  \}\
+\
+ \cf5 public\cf3  MyOwnException(String \cf9 message\cf3 )\{\
+\pard\pardeftab720
+\cf0  \cf5 super\cf0 (\cf9 message\cf0 ); \cf7 //Calling the overloaded base constructor of the Exception class. Refer to Java API\
+\pard\pardeftab720
+\cf3  \}\
+ \cf5 public\cf3  MyOwnException(String \cf9 message\cf3 , \cf5 double\cf3  \cf9 withdrawalAmount\cf3 )\{\'a0\
+\pard\pardeftab720
+\cf0  \cf5 super\cf0 (\cf9 message\cf0 ); \cf7 //Calling the overloaded base constructor of the Exception class. Refer to Java API\
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Invalid withdrawal amount detected. Amount requested: "\cf0  + \cf9 withdrawalAmount\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+\}\
+\
+\pard\pardeftab720
+\cf5 class\cf0  MyBankAccount\{ \cf7 //Simple scenario in order to illustrate how to use your new exception\'a0\
+\pard\pardeftab720
+\cf0  \cf5 private\cf0  \cf5 double\cf0  \cf6 balance\cf0 ;\cf5 \
+\pard\pardeftab720
+\cf3  \cf5 public\cf3  MyBankAccount(\cf5 double\cf3  \cf9 balance\cf3 )\{ \cf5 this\cf3 .\cf6 balance\cf3  = \cf9 balance\cf3 ;\}\
+\pard\pardeftab720
+\cf0  \cf5 public\cf0  \cf5 boolean\cf0  WithdrawMoney(\cf5 double\cf0  \cf9 amountRequested\cf0 ) \cf5 throws\cf0  MyOwnException \cf7 //This keyword is needed if there exists a single line in your method that will be throwing an exception.Notice it says throws\
+\pard\pardeftab720
+\cf3  \{\
+\pard\pardeftab720
+\cf0  \cf5 boolean\cf0  \cf9 allow\cf0  = \cf5 true\cf0 ;\cf5 \
+\cf0  \cf5 if\cf0 (\cf9 amountRequested\cf0  > \cf5 this\cf0 .\cf6 balance\cf0  || \cf9 amountRequested\cf0  <= 0)\{ \cf7 //Even though amount requested is a number, we should not allow withdrawal when it is a negative number or when amount requested is greater than balance.\
+\pard\pardeftab720
+\cf3  \cf9 allow\cf3  = \cf5 false\cf3 ;\
+\pard\pardeftab720
+\cf0  \cf5 throw\cf0  \cf5 new\cf0  MyOwnException(\cf8 "Illegal amount requested."\cf0 , \cf9 amountRequested\cf0 ); \cf7 //this is where you actually throw an exception. Notice the keyword is throw new\
+\pard\pardeftab720
+\cf3  \}\
+\pard\pardeftab720
+\cf0  \cf5 this\cf0 .\cf6 balance\cf0  -= \cf9 amountRequested\cf0 ; \cf7 //Allow this process otherwise\
+\cf0  \cf5 return\cf0  \cf9 allow\cf0 ;\cf5 \
+\pard\pardeftab720
+\cf3  \}\
+\
+\}\
+\pard\pardeftab720
+\cf5 public\cf3  \cf5 class\cf3  ExceptionDemo \{\
+ \cf5 public\cf3  \cf5 static\cf3  \cf5 void\cf3  main(String[] \cf9 args\cf3 )\{\
+\pard\pardeftab720
+\cf0  MyBankAccount \cf9 myChecking\cf0  = \cf5 new\cf0  MyBankAccount(1000); \cf7 //Opened a checking account and put in 1000 dollars\
+\cf0  \cf5 try\cf0 \'a0 \cf7 //notice that try catch block is now required since you are calling a method that throws an exception in its declaration. It won't compile otherwise\
+\pard\pardeftab720
+\cf3  \{\
+\pard\pardeftab720
+\cf0  \cf5 while\cf0 (\cf9 myChecking\cf0 .WithdrawMoney(100)) \cf7 //Continue to withdrew money until it ran out of funds\
+\pard\pardeftab720
+\cf3  \'a0 \'a0 \{\
+\pard\pardeftab720
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Withdrew $100 successfully!"\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+ \}\'a0\
+ \cf5 catch\cf3  (MyOwnException \cf9 e\cf3 )\'a0\
+ \{\
+\pard\pardeftab720
+\cf0  \cf7 //e.printStackTrace(); //Uncomment this to see the stacktrace\
+\pard\pardeftab720
+\cf3  System.\cf6 out\cf3 .println(\cf8 "Error message caught: "\cf3  + \cf9 e\cf3 .getMessage());\
+ \}\
+ \}\
+\}\
+\pard\pardeftab720\sa260
+
+\f0\fs26 \cf3 [Interface Introduction]\
+And finally, we introduced interface. Creating an interface is easy and it uses the implements keyword. The biggest problem is understanding how to use interface.\
+Interface acts like a contract for each class that implemented it. If the class failed to implement the required interface methods, then it has to mark itself as abstract.\
+Here are the codes from lecture:\
+\pard\pardeftab720
+
+\f1\fs22 \cf3 \
+\pard\pardeftab720
+\cf5 public\cf0  \cf5 interface\cf0  IRental \{ \cf7 //A contract for all tenants to abide to\
+\pard\pardeftab720
+\cf0 \'a0 \'a0 \cf5 double\cf0  PayRent(); \cf7 //notice that the contract only says that you have to pay rent. It does not specify how the rent will be paid.\
+\cf0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \cf7 //in other words, there are no implementation details over how you choose to pay rent.\'a0\
+\cf0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \cf7 //This is also an abstract method because there are no implementation defined.\'a0\
+\pard\pardeftab720
+\cf3 \}\
+\
+\pard\pardeftab720
+\cf5 class\cf3  Human\{\
+ String \cf6 name\cf3 ;\
+\}\
+\pard\pardeftab720
+\cf7 //If \ul Michael\ulnone  does not have a means to pay rent or does not have enough information in order to pay rent, then \ul Michael\ulnone  is not allowed to exist\
+// and have to be marked as abstract / incomplete\
+\pard\pardeftab720
+\cf5 abstract\cf0  \cf5 class\cf0  Michael \cf5 extends\cf0  Human \cf5 implements\cf0  IRental\{\cf5 \
+\pard\pardeftab720
+\cf0  \cf5 abstract\cf0  \cf5 public\cf0  \cf5 double\cf0  PayRent(); \cf7 //\ul Michael\ulnone  have no way to pay rent and thus couldn't implement the payRent method\
+\pard\pardeftab720
+\cf3 \
+\}\
+\pard\pardeftab720
+\cf7 //Another Fun example\
+\pard\pardeftab720
+\cf5 class\cf3  Sheep\{\
+\pard\pardeftab720
+\cf0  \cf5 boolean\cf0  \cf6 eatSheep\cf0  = \cf5 false\cf0 ;\cf7 //inherent attribute that belongs to the sheep class\
+\pard\pardeftab720
+\cf3  \cf5 void\cf3  Baa ()\{\
+ System.\cf6 out\cf3 .println(\cf8 "Baa!"\cf3 );\
+ \}\
+\}\
+\pard\pardeftab720
+\cf5 interface\cf3  IActLikeASheep\
+\{\
+\pard\pardeftab720
+\cf0 \'a0 \'a0 \cf5 boolean\cf0  \cf6 eatSheep\cf0  = \cf5 false\cf0 ; \cf7 //if you are acting like a sheep, then you MUST NOT eat sheep\
+\cf0 \'a0 \'a0 \cf5 void\cf0  Baa (); \cf7 //no implementation specified as long as you sound like a sheep\
+\pard\pardeftab720
+\cf3 \}\
+\pard\pardeftab720
+\cf5 class\cf3  Carnivore\{\
+\pard\pardeftab720
+\cf0  \cf5 public\cf0  \cf5 boolean\cf0  \cf6 eatSheep\cf0  = \cf5 true\cf0 ;\cf5 \
+\cf0  \cf5 boolean\cf0  \cf6 eatChicken\cf0  = \cf5 true\cf0 ;\cf5 \
+\cf0  \cf5 boolean\cf0  \cf6 eatCow\cf0  = \cf5 true\cf0 ;\cf5 \
+\cf0  \cf7 //etc\
+\pard\pardeftab720
+\cf3 \}\
+\pard\pardeftab720
+\cf5 class\cf3  Wolf \cf5 extends\cf3  Carnivore \cf5 implements\cf3  IActLikeASheep\{\
+ \
+\pard\pardeftab720
+\cf0  \cf5 public\cf0  \cf5 void\cf0  Baa() \{ \cf7 //Now wolf needs to have the ability to sound like a sheep since it has agreed to implement the interface method\
+\cf0  System.\cf6 out\cf0 .println(\cf8 "Wolf tried to sound like a sheep to blend in..."\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+\}\
+\pard\pardeftab720
+\cf5 public\cf3  \cf5 class\cf3  WolfInSheepClothingDemo \{ //This code will not compile! Try as you might but you now have ambiguous and conflicting declaration\
+ \cf5 public\cf3  \cf5 static\cf3  \cf5 void\cf3  main(String[] \cf9 args\cf3 )\{\
+ Wolf \cf9 pretentiousWolf\cf3  = \cf5 new\cf3  Wolf();\
+\pard\pardeftab720
+\cf0  \cf5 if\cf0 (\cf9 pretentiousWolf\cf0 \ul \ulc0 .\ulnone eatSheep)\{\cf9 \
+\cf0  System.\cf6 out\cf0 .println(\cf8 "This wolf eats sheep! Don't let him in!"\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+\pard\pardeftab720
+\cf0  \cf5 else\cf0 \{\cf5 \
+\cf0  System.\cf6 out\cf0 .println(\cf8 "This wolf does not eat sheep! It's safe to let him in."\cf0 );\cf8 \
+\pard\pardeftab720
+\cf3  \}\
+ \
+ \}\
+\}\
+\
+\
+\
+\pard\pardeftab720\ri60
+
+\f0\b\fs30 \cf0 Stacks and Queues Basic Concept\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 Stacks: https://en.wikipedia.org/wiki/Stack_(abstract_data_type)\
+Queues: https://en.wikipedia.org/wiki/Queue_(abstract_data_type)\
+It is sufficient to just read the first part of the wikipedia entry in order to get an idea on how each type of collection works. Notice that these are just concepts, not the actual implementation.\
+\pard\pardeftab720
+
+\f1\fs22 \cf3 \
+\
+\pard\pardeftab720\ri60
+
+\f0\b\fs30 \cf0 Container Implementations - Growable Arrays versus Linked-List\cf3 \
+\pard\pardeftab720\sa260
+
+\b0\fs26 \cf3 A container is not necessarily a stack or a queue. A container is\'a0just be a simple place to store objects or primitive data type.\
+A container can be implemented using a growable array or linked-list. The code attached shows how implementations are done using a growable array.\
+Notice the overhead.\
+}{\*\beandata789c9d935d6f82301486aff157748db752d876b12d8851c1c4cc2099b86497153a65e32ba5cef1ef57444aeb66b68c1bda73fabe4f7b4e6b8d3ed3047c105ac6793684a66e4040b2308fe26c3b84eb6036b88323bb675d39cb69f0e2bba048e292017f3d59cca7000e101a17454210720207f88bf92a00dc0321d78300ee182b1e103a1c0e3aae57e9619ed60b4be4d3bc2094550b6e36e0023d6211e498c65dd90e8f4671c8ec9e66bd93caee631aee62bec242f594474b46f9666d6ff5482a128d45fa146f75f9e68d84ac14324c29ae07c2a09fed934492692d573b3984092e855e4e37f9e9acbf9e3b5d5eb3e28c912da1f6ad85dae1518854636fa5f39fec2cf6a6502e603aceb5ca5140a8f36ca16715f93ff7e64fdc2eda567ce28ebd27f6ead6f78d778ef1e866cf48f9dcf4dfdba71ba591d2490dd334ee0df5c03ff68b5c3a9fb8360e57711aa6958c92572c8f8552b2dfead9d0329c1289f70b4354a4736bbc585e887b2a8a56cf2704670e665830cece7cde24513053ad540756ded6e9e109b6501bf52759b43a0b1d5facddfb02aa1d4161}

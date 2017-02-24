@@ -1,0 +1,50 @@
+
+public class Reverse {
+	public static void main(String args[]){
+		System.out.println(reverseNum1(12345));
+		System.out.println(reverseNum2(12345));
+		System.out.println(reverseNum3(12345));
+	}
+	
+	
+	static int reverseNum1(int num){
+		if(num < 10){
+			return num;
+		}
+		int save = num;
+		int currentNumber = num%10;
+		while (save >= 10)
+		{
+			currentNumber *= 10; //This is done here to ensure that you multiply 1 less digit
+			save /= 10;
+		}
+		
+		return currentNumber + reverseNum1(num/10);
+	}
+	
+	static int reverseNum2(int num){
+		if (num < 10){
+			return num;
+		}
+		
+		int currentNum = num;
+		int myNum = num%10;
+		while(currentNum > 10){
+			myNum *= 10;
+			currentNum /= 10;
+		}
+		return myNum + reverseNum2(num/10);
+	}
+	
+	
+	
+	
+	
+	
+	static int reverseNum3(int num){
+		return num;
+	}
+
+	
+	
+}
